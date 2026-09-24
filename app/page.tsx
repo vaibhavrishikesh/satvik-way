@@ -17,9 +17,9 @@ export default function Home() {
 
       <section className="soy-leaf-pattern">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:grid-cols-2 md:gap-12 md:px-8 md:py-20">
-          <div>
+          <div className="hero-text-shadow">
             <p className="sub-title text-sm tracking-[0.18em]">Rishikesh cafe supply</p>
-            <h1 className="font-display mt-4 text-5xl font-semibold uppercase leading-[1.05] md:text-6xl lg:text-[4.25rem]">
+            <h1 className="hero-title-shadow font-display mt-4 text-5xl font-semibold uppercase leading-[1.05] md:text-6xl lg:text-[4.25rem]">
               Satvik Way
               <span className="mt-2 block text-gold">tempeh for cafes</span>
             </h1>

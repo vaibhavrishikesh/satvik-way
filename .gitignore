@@ -42,3 +42,5 @@ next-env.d.ts
 
 # Envato template source (layout reference only)
 /_template/
+
+.vercel
