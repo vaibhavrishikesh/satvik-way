@@ -4,7 +4,14 @@ import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { brand } from "@/lib/brand";
-import { defaultOgImage, organizationJsonLd, siteDescription, siteUrl, websiteJsonLd } from "@/lib/seo";
+import {
+  defaultOgImage,
+  organizationJsonLd,
+  siteDescription,
+  siteKeywords,
+  siteUrl,
+  websiteJsonLd,
+} from "@/lib/seo";
 import "./globals.css";
 
 const display = Oswald({
@@ -33,17 +40,7 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   applicationName: brand.name,
-  keywords: [
-    "Satvik Way",
-    "Rishikesh tempeh",
-    "tempeh cubes Rishikesh",
-    "Rishikesh cafe supply",
-    "WhatsApp tempeh order",
-    "raw tempeh wholesale",
-    "cafe wholesale Uttarakhand",
-    "Tapovan cafe tempeh",
-    "Laxman Jhula cafe supply",
-  ],
+  keywords: [...siteKeywords],
   authors: [{ name: brand.name, url: siteUrl }],
   creator: brand.name,
   publisher: brand.name,
@@ -52,22 +49,39 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
     siteName: brand.name,
-    title: `${brand.name} — ${brand.tagline}`,
+    title: `${brand.name} — Tempeh cubes for Rishikesh cafes`,
     description: siteDescription,
-    images: [{ url: defaultOgImage, width: 1400, height: 900, alt: `${brand.name} soy tempeh cubes` }],
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 1200,
+        alt: `${brand.name} vacuum-packed soy tempeh cubes — Rishikesh cafe supply`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${brand.name} — ${brand.tagline}`,
+    title: `${brand.name} — Tempeh cubes for Rishikesh cafes`,
     description: siteDescription,
     images: [defaultOgImage],
+  },
+  other: {
+    "geo.region": "IN-UK",
+    "geo.placename": "Rishikesh",
   },
 };
 

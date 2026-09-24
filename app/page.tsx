@@ -1,17 +1,23 @@
 import Link from "next/link";
 import { FaqList } from "@/components/faq-list";
+import { JsonLd } from "@/components/json-ld";
 import { ProductCard } from "@/components/product-card";
 import { ProductImage } from "@/components/product-image";
-import { gallery, images, packShots, products, promos } from "@/lib/products";
+import { images, packShots, products, promos } from "@/lib/products";
+import { faqJsonLd, localBusinessJsonLd, productListJsonLd } from "@/lib/seo";
 
 const featured = products.filter((item) => item.featured);
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={localBusinessJsonLd()} />
+      <JsonLd data={productListJsonLd(products)} />
+      <JsonLd data={faqJsonLd()} />
+
       <section className="soy-leaf-pattern">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:grid-cols-12 md:gap-12 md:px-8 md:py-20">
-          <div className="md:col-span-5">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:grid-cols-2 md:gap-12 md:px-8 md:py-20">
+          <div>
             <p className="sub-title text-sm tracking-[0.18em]">Rishikesh cafe supply</p>
             <h1 className="font-display mt-4 text-5xl font-semibold uppercase leading-[1.05] md:text-6xl lg:text-[4.25rem]">
               Satvik Way
@@ -42,23 +48,24 @@ export default function Home() {
             </dl>
           </div>
 
-          <div className="md:col-span-7">
-            <div className="grid grid-cols-12 items-stretch gap-3 md:gap-4">
-              <div className="relative col-span-7 aspect-square overflow-hidden bg-cream">
+          {/* Smooth 3-angle pack — outer aspect box so side panels never collapse */}
+          <div className="relative aspect-square w-full">
+            <div className="absolute inset-0 grid grid-cols-[1.35fr_1fr] gap-3">
+              <div className="relative overflow-hidden bg-cream">
                 <ProductImage
                   src={packShots[0].src}
                   alt={packShots[0].alt}
                   priority
-                  sizes="(min-width: 768px) 40vw, 70vw"
+                  sizes="(min-width: 768px) 35vw, 60vw"
                   className="object-cover"
                 />
               </div>
-              <div className="col-span-5 grid grid-rows-2 gap-3 self-stretch md:gap-4">
+              <div className="grid min-h-0 grid-rows-2 gap-3">
                 <div className="relative min-h-0 overflow-hidden bg-cream">
                   <ProductImage
                     src={packShots[1].src}
                     alt={packShots[1].alt}
-                    sizes="(min-width: 768px) 25vw, 40vw"
+                    sizes="(min-width: 768px) 22vw, 40vw"
                     className="object-cover"
                   />
                 </div>
@@ -66,7 +73,7 @@ export default function Home() {
                   <ProductImage
                     src={packShots[2].src}
                     alt={packShots[2].alt}
-                    sizes="(min-width: 768px) 25vw, 40vw"
+                    sizes="(min-width: 768px) 22vw, 40vw"
                     className="object-cover"
                   />
                 </div>
@@ -81,11 +88,11 @@ export default function Home() {
         <h2 className="font-display mt-2 text-center text-4xl font-semibold uppercase">
           3 angles of the pack
         </h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {packShots.map((shot, i) => (
             <div key={shot.src} className="overflow-hidden bg-cream">
               <div className="relative aspect-square">
-                <ProductImage src={shot.src} alt={shot.alt} sizes="(min-width: 768px) 33vw, 100vw" />
+                <ProductImage src={shot.src} alt={shot.alt} sizes="(min-width: 640px) 33vw, 100vw" />
               </div>
               <p className="px-3 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gold">
                 Angle {i + 1}
@@ -100,22 +107,10 @@ export default function Home() {
         <h2 className="font-display mt-2 text-center text-4xl font-semibold uppercase">
           Cooked plate and raw packs
         </h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {promos.map((promo) => (
             <div key={promo.src} className="relative aspect-[3/4] overflow-hidden bg-white shadow-sm">
-              <ProductImage src={promo.src} alt={promo.alt} sizes="(min-width: 768px) 33vw, 100vw" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
-        <p className="sub-title text-center">From the set</p>
-        <h2 className="font-display mt-2 text-center text-4xl font-semibold uppercase">Pack shots</h2>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {gallery.slice(0, 3).map((shot) => (
-            <div key={shot.src} className="relative aspect-[4/5] overflow-hidden bg-white">
-              <ProductImage src={shot.src} alt={shot.alt} sizes="(min-width: 768px) 33vw, 50vw" />
+              <ProductImage src={promo.src} alt={promo.alt} sizes="(min-width: 640px) 33vw, 100vw" />
             </div>
           ))}
         </div>
@@ -148,16 +143,8 @@ export default function Home() {
 
       <section className="soy-leaf-pattern-soft px-4 py-16 md:px-8">
         <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="relative col-span-2 aspect-[16/10] overflow-hidden bg-white">
-              <ProductImage src={images.zip} alt="Satvik Way tempeh zip bag" sizes="50vw" />
-            </div>
-            <div className="relative aspect-square overflow-hidden bg-white">
-              <ProductImage src={images.promo2} alt="Satvik Way raw tempeh slab" sizes="25vw" />
-            </div>
-            <div className="relative aspect-square overflow-hidden bg-white">
-              <ProductImage src={images.craft} alt="Satvik Way cafe lot tempeh cubes" sizes="25vw" />
-            </div>
+          <div className="relative aspect-[4/5] overflow-hidden bg-white md:aspect-square">
+            <ProductImage src={images.craft} alt="Satvik Way cafe lot tempeh cubes" sizes="45vw" />
           </div>
           <div>
             <p className="sub-title">About the supply</p>
