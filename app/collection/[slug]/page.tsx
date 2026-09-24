@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { InternalLinks } from "@/components/internal-links";
 import { JsonLd } from "@/components/json-ld";
 import { ProductCard } from "@/components/product-card";
 import { ProductImage } from "@/components/product-image";
@@ -65,12 +66,38 @@ export default async function ProductPage({
           <ProductImage src={product.image} alt={product.name} priority sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
         </div>
         <div className="md:pt-6">
+          <nav aria-label="Breadcrumb" className="mb-4 text-xs text-muted">
+            <Link href="/" className="hover:text-espresso">
+              Home
+            </Link>
+            {" / "}
+            <Link href="/collection" className="hover:text-espresso">
+              Shop
+            </Link>
+            {" / "}
+            <span className="text-espresso">{product.name}</span>
+          </nav>
           <p className="text-sm font-semibold uppercase tracking-wide text-gold">{product.category}</p>
-          <h1 className="font-display mt-2 text-4xl font-semibold uppercase md:text-5xl">{product.name}</h1>
+          <h1 className="font-display mt-2 text-3xl font-semibold uppercase sm:text-4xl md:text-5xl">{product.name}</h1>
           <p className="mt-4 text-muted">{product.origin}</p>
           <p className="mt-8 text-3xl text-clay">{product.price}</p>
           <p className="mt-1 text-sm text-muted">{product.weight}</p>
           <p className="mt-6 max-w-md leading-8 text-muted">{product.story}</p>
+          <p className="mt-4 text-sm text-muted">
+            Learn{" "}
+            <Link href="/tempeh" className="font-semibold text-espresso underline-offset-2 hover:underline">
+              how to cook tempeh
+            </Link>
+            , read{" "}
+            <Link href="/story" className="font-semibold text-espresso underline-offset-2 hover:underline">
+              about Satvik Way
+            </Link>
+            , or browse the{" "}
+            <Link href="/collection" className="font-semibold text-espresso underline-offset-2 hover:underline">
+              full shop
+            </Link>
+            .
+          </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={supplyWa(productOrderMessage(product.name))}
@@ -104,6 +131,14 @@ export default async function ProductPage({
           </div>
         </div>
       ) : null}
+
+      <div className="mx-auto mt-16 max-w-7xl">
+        <InternalLinks
+          compact
+          exclude={[`/collection/${product.slug}`]}
+          title="Related Satvik Way pages"
+        />
+      </div>
     </div>
   );
 }

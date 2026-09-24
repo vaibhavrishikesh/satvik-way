@@ -7,6 +7,7 @@ import { brand } from "@/lib/brand";
 import {
   defaultOgImage,
   organizationJsonLd,
+  pageUrl,
   siteDescription,
   siteKeywords,
   siteUrl,
@@ -45,7 +46,13 @@ export const metadata: Metadata = {
   creator: brand.name,
   publisher: brand.name,
   category: "food",
-  alternates: { canonical: siteUrl },
+  alternates: {
+    canonical: siteUrl,
+    types: {
+      "application/rss+xml": pageUrl("/feed.xml"),
+      "text/plain": pageUrl("/llms.txt"),
+    },
+  },
   robots: {
     index: true,
     follow: true,

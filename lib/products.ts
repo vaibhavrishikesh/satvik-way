@@ -73,9 +73,24 @@ export const images = {
 };
 
 export const promos = [
-  { src: "/products/promo-1-wood.jpg", alt: "Cooked Satvik Way tempeh on wood plate" },
-  { src: "/products/promo-2-studio.jpg", alt: "Raw Satvik Way tempeh slab, studio" },
-  { src: "/products/promo-3-studio.jpg", alt: "Vacuum-packed Satvik Way tempeh slab, studio" },
+  {
+    src: "/products/promo-1-wood.jpg",
+    alt: "Cooked Satvik Way tempeh on wood plate",
+    title: "Cooked plate",
+    benefit: "High protein sear — about 20 g protein per 100 g. Keeps guests full on cafe bowls and wraps.",
+  },
+  {
+    src: "/products/promo-2-studio.jpg",
+    alt: "Raw Satvik Way tempeh slab, studio",
+    title: "Raw ferment",
+    benefit: "Gut-friendly fermentation plus iron, calcium, and B vitamins for a clean plant-protein menu.",
+  },
+  {
+    src: "/products/promo-3-studio.jpg",
+    alt: "Vacuum-packed Satvik Way tempeh slab, studio",
+    title: "Cafe pack",
+    benefit: "Vacuum sealed for weekly Rishikesh drops. Heart-friendly soy isoflavones, dairy-free calcium.",
+  },
 ] as const;
 
 export const gallery = [

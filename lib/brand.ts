@@ -24,11 +24,14 @@ export const shopLinks = [
   { href: "/collection", label: "All products" },
   { href: "/collection?cat=Tempeh", label: "Tempeh cubes" },
   { href: "/collection?cat=Cafe lot", label: "Cafe lots" },
+  { href: "/gucchi-mushroom", label: "Gucchi mushroom" },
 ] as const;
 
 export const nav = [
   { href: "/collection", label: "Shop" },
   { href: "/tempeh", label: "Why tempeh" },
+  { href: "/buy-tempeh/rishikesh", label: "Buy tempeh" },
+  { href: "/gucchi-mushroom", label: "Gucchi" },
   { href: "/story", label: "About" },
   { href: "/contact", label: "Order" },
 ] as const;
